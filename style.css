@@ -11,7 +11,27 @@ body {
   margin: 0;
   padding: 0;
   background-color: bisque;
+  overflow: hidden;
 }
+/* Start Game Button */
+.landing-page {
+  margin: 0 auto;
+  display: flex;
+  height: 100vh;
+}
+
+.landing-page a {
+margin: auto;
+}
+.startGame {
+  font-size: 2em;
+}
+
+/* Helps manage the specific page one is, for dynamic rendering */
+.hidePage {
+  display: none;
+}
+
 main {
   width: 100vw;
   height: 100vh;
