@@ -16,10 +16,10 @@ Special effect when winning move
 Store cookie that keeps track of a player's score
 
 ******* To-Do **********
+Game UI 
 Render Player score on landing page when site is loaded
 Button to wipe score and start a new game
 Add best of 3 and 5
-Game UI 
 
 ******* Bonus *********
 Can adjust board size
@@ -27,12 +27,12 @@ Online Multiplayer function
 3+ player functionionality
 */
 
-import { state } from './state.js'
+import { state } from './JS/state.js'
 import {
   clickedMe,
   reset,
   reapply
-} from './misc.js'
+} from './JS/misc.js'
 
 
 // applies the onClick event that will call the clickedMe function.

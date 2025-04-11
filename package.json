@@ -1,0 +1,28 @@
+{
+  "name": "tiktactoe",
+  "version": "1.0.0",
+  "description": "tic-tac-toe with the boys",
+  "homepage": "https://github.com/HuntOreo/TicTacToe#readme",
+  "bugs": {
+    "url": "https://github.com/HuntOreo/TicTacToe/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HuntOreo/TicTacToe.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "checks.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "firebase": "^11.6.0"
+  },
+  "devDependencies": {
+    "vite": "^6.2.6"
+  }
+}
