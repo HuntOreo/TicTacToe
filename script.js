@@ -13,13 +13,13 @@ Landing page that allows you to start a game
 
 ******* Doing **********
 Special effect when winning move
-Game UI
+Store cookie that keeps track of a player's score
 
 ******* To-Do **********
-Store cookie that keeps track of a player's score
 Render Player score on landing page when site is loaded
 Button to wipe score and start a new game
 Add best of 3 and 5
+Game UI 
 
 ******* Bonus *********
 Can adjust board size

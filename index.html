@@ -45,14 +45,28 @@
   </body>
   <script src="script.js"type="module"></script>
   <script type="module">
-    import { initializeApp } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js'
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-    // If you enabled Analytics in your project, add the Firebase SDK for Google Analytics
-    import { getAnalytics } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js'
+    // Import the Firestore function for database
+    import { firestore } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js'
+  
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAP9lLig8GXhgMq0rGIGN6yFdmvj1I27BU",
+      authDomain: "tictactoe-2d137.firebaseapp.com",
+      projectId: "tictactoe-2d137",
+      storageBucket: "tictactoe-2d137.firebasestorage.app",
+      messagingSenderId: "74233409732",
+      appId: "1:74233409732:web:8aefe6c22125be0c599991"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
 
-    // Add Firebase products that you want to use
-    import { getAuth } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js'
-    import { getFirestore } from 'https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js'
+
   </script>
   
 </html>
