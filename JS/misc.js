@@ -33,3 +33,27 @@ export const reapply = () => {
   const tiles = document.querySelectorAll('.tile')
   tiles.forEach(el => el.onclick = clickedMe)
 }
+
+export const wipeSlate = () => {
+
+  let count = 0
+  const scores = document.querySelectorAll('.score')
+
+  state.turn = 'X'
+  state.players.forEach((player)=> {
+    player.score = 0
+    if (count < state.players.length) {
+      scores[count].innerHTML = ""
+      scores[count].innerHTML = `
+          <div class="scoreWindow">
+            <p>${player.name} Score:</p>
+            <p class="tally">${player.score}</p>
+          </div>
+        `
+      count++
+    }
+  })
+
+  reset()
+
+}

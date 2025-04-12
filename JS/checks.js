@@ -70,12 +70,19 @@ const check = (checkList) => {
   //    - should only happen if checking a diagonal.
   if(checkList.itemTwo) {
     let score = 0
+    let winnerTiles = []
     for(let i=0;i<checkList.itemOne.length;i++) {
+
       if(checkList.itemOne[i].innerText === checkList.turn) {
+        winnerTiles.push(checkList.itemOne[i])
         score++
           // if the score is 3, returns true, 
           // which means there is a winner.
           if(score===3) {
+            winnerTiles.forEach(tile => {
+              tile.style
+            })
+
             state.players.find(item => item.name === checkList.turn).score++
             return {
               check: true,
@@ -86,13 +93,21 @@ const check = (checkList) => {
       }
       
       score = 0
-      
+      winnerTiles = [...[]]
+
       for(let i=0;i<checkList.itemTwo.length;i++) {
         if(checkList.itemTwo[i].innerText === checkList.turn) {
+          console.log(checkList.itemTwo[i])
+          
           score++
           // if the score is 3, returns true, which means 
           // there is a winner.
           if(score===3) {
+            
+            winnerTiles.forEach(tile => {
+              console.log(tile)
+            })
+
             state.players.find(item => item.name === checkList.turn).score++
             return {
               check: true,
@@ -107,12 +122,19 @@ const check = (checkList) => {
       // If its an X, it will add that to the scoreboard.
       for(let i=0;i<checkList.itemOne.length;i++){
         let score = 0
+        
+        const winnerTiles = []
+
         for(let j=0;j<checkList.itemOne.length;j++) {
           if(checkList.itemOne[i][j].innerText === checkList.turn) {
+            winnerTiles.push(checkList.itemOne[i][j])
             score++
             // if the score is 3, returns true, 
             // which means there is a winner.
             if(score===3) {
+              winnerTiles.forEach(tile => {
+                tile.style
+              })
               state.players.find(item => item.name === checkList.turn).score++
               return {
                 check: true,

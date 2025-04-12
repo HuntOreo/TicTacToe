@@ -13,9 +13,11 @@ Landing page that allows you to start a game
 
 ******* Doing **********
 Special effect when winning move
-Store cookie that keeps track of a player's score
+Functional database for keeping track of 
+  users and their scores.
 
 ******* To-Do **********
+Store cookie that keeps track of a player's score
 Game UI 
 Render Player score on landing page when site is loaded
 Button to wipe score and start a new game
@@ -27,13 +29,11 @@ Online Multiplayer function
 3+ player functionionality
 */
 
-import { state } from './JS/state.js'
 import {
   clickedMe,
   reset,
-  reapply
+  wipeSlate
 } from './JS/misc.js'
-
 
 // applies the onClick event that will call the clickedMe function.
 const tile = document.querySelectorAll('.tile')
@@ -46,50 +46,25 @@ tile.forEach(el => {
 const resetBtn = document.querySelector('#reset')
 resetBtn.onclick = reset
 
-// Will hide the landing page and show the board game
+// Elements needed to handle what pages to render.
 const landingPage = document.querySelector('.landing-page')
 const boardPage = document.querySelector('.board-page')
-
 const startGameBtn = document.querySelector('.startGame')
-const loadBoardPage = () =>{
-  
+const endGameBtn = document.querySelector('#endGame')
 
+
+// Will hide the landing page and show the board game
+const loadBoardPage = () =>{
   boardPage.classList.remove('hidePage')
   landingPage.classList.add('hidePage')
 }
 
-// Will hide the landing page and show the board game
-const endGameBtn = document.querySelector('#endGame')
+// Will hide the board, wipe the score, 
+// and show the landing page.
 const loadLandingPage = () =>{
-
   wipeSlate()
   landingPage.classList.remove('hidePage')
   boardPage.classList.add('hidePage')
-}
-
-
-const wipeSlate = () => {
-
-  let count = 0
-  const scores = document.querySelectorAll('.score')
-
-  state.turn = 'X'
-  state.players.forEach((player)=> {
-    player.score = 0
-    if (count < state.players.length) {
-      scores[count].innerHTML = ""
-      scores[count].innerHTML = `
-          <div class="scoreWindow">
-            <p>${player.name} Score:</p>
-            <p class="tally">${player.score}</p>
-          </div>
-        `
-      count++
-    }
-  })
-
-  reset()
-
 }
 
 startGameBtn.onclick = loadBoardPage
