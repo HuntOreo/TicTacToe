@@ -4,7 +4,6 @@ import { state } from './state.js'
 // organizes the list of tiles into a 2D array, 
 // with each child being an array of tiles that make up a row.
 const checkRows = function (rows, state) {
-
   const filtered = []
   for(let i=0;i<rows.length;i+=3) {
     let temp = []
@@ -14,6 +13,7 @@ const checkRows = function (rows, state) {
     
     filtered.push(temp)
   } 
+
 
   // checks if there is a winning play, returns true or false.
   return check({
@@ -61,28 +61,27 @@ const checkDiagonal = (tiles, state) => {
   })
 }
 
+
 // This function will check if a given array of 
 // tiles are a winning set. 
 const check = (checkList) => {
-  
+
+    
   // if a second list is given, it will also check 
   // for a victory in that one. 
   //    - should only happen if checking a diagonal.
   if(checkList.itemTwo) {
     let score = 0
-    let winnerTiles = []
     for(let i=0;i<checkList.itemOne.length;i++) {
-
       if(checkList.itemOne[i].innerText === checkList.turn) {
-        winnerTiles.push(checkList.itemOne[i])
         score++
           // if the score is 3, returns true, 
           // which means there is a winner.
           if(score===3) {
-            winnerTiles.forEach(tile => {
-              tile.style
+            // highlight each winning tile
+            checkList.itemOne.forEach(tile => {
+              tile.style.backgroundColor = 'red'
             })
-
             state.players.find(item => item.name === checkList.turn).score++
             return {
               check: true,
@@ -93,21 +92,17 @@ const check = (checkList) => {
       }
       
       score = 0
-      winnerTiles = [...[]]
-
+      
       for(let i=0;i<checkList.itemTwo.length;i++) {
         if(checkList.itemTwo[i].innerText === checkList.turn) {
-          console.log(checkList.itemTwo[i])
-          
           score++
           // if the score is 3, returns true, which means 
           // there is a winner.
           if(score===3) {
-            
-            winnerTiles.forEach(tile => {
-              console.log(tile)
+            // highlight each winning tile
+            checkList.itemTwo.forEach(tile => {
+              tile.style.backgroundColor = 'red'
             })
-
             state.players.find(item => item.name === checkList.turn).score++
             return {
               check: true,
@@ -117,28 +112,27 @@ const check = (checkList) => {
         }
       }
     } else {
-      // loops through each aaray inside the 2D 
+      // loops through each aray inside the 2D 
       // array and checks the innertext of the node. 
       // If its an X, it will add that to the scoreboard.
+      //    - used for checking rows and columns
       for(let i=0;i<checkList.itemOne.length;i++){
         let score = 0
-        
-        const winnerTiles = []
-
         for(let j=0;j<checkList.itemOne.length;j++) {
           if(checkList.itemOne[i][j].innerText === checkList.turn) {
-            winnerTiles.push(checkList.itemOne[i][j])
             score++
             // if the score is 3, returns true, 
             // which means there is a winner.
             if(score===3) {
-              winnerTiles.forEach(tile => {
-                tile.style
+              // highlight each winning tile
+              checkList.itemOne[i].forEach(tile => {
+                tile.style.backgroundColor = 'red'
               })
               state.players.find(item => item.name === checkList.turn).score++
+
               return {
                 check: true,
-                player: state.turn
+                player: state.turn,
               }
             }
           }
@@ -147,7 +141,8 @@ const check = (checkList) => {
     }
     
     return false
-  }
+
+}
   
   const checkWinner = (state) => {
     
@@ -158,11 +153,12 @@ const check = (checkList) => {
     
     
     if(rows.check) {
-      endGame(rows.player)
+      endGame(rows)
     } else if(columns.check) {
-      endGame(columns.player)
+      endGame(columns)
     } else if(diagonals.check) {
-      endGame(diagonals.player) 
+      endGame(diagonals
+      ) 
     }
   }
   
@@ -171,7 +167,7 @@ const check = (checkList) => {
     tiles.forEach(el => {
       el.onclick = null
     })
-    const player = state.players.find(el => el.name == winner)
+    const player = state.players.find(el => el.name == winner.player)
     updateScore(player)
   }
 

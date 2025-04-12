@@ -13,6 +13,7 @@ export const reset = () => {
   tiles.forEach(el => {
     el.innerText = ''
     el.onclick = clickedMe
+    el.style.backgroundColor = '#fff'
   })
 
   state.turn = 'X'

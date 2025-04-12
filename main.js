@@ -10,9 +10,9 @@ Can reset the board
 Keeps track of score per game
 Updates the scoreboard
 Landing page that allows you to start a game
+Special effect when winning move
 
 ******* Doing **********
-Special effect when winning move
 Functional database for keeping track of 
   users and their scores.
 
