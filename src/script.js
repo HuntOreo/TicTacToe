@@ -13,8 +13,7 @@ Landing page that allows you to start a game
 Special effect when winning move
 
 ******* Doing **********
-Functional database for keeping track of 
-  users and their scores.
+Functional database for keeping track of users and their scores.
 
 ******* To-Do **********
 Store cookie that keeps track of a player's score
@@ -54,14 +53,14 @@ const endGameBtn = document.querySelector('#endGame')
 
 
 // Will hide the landing page and show the board game
-const loadBoardPage = () =>{
+const loadBoardPage = () => {
   boardPage.classList.remove('hidePage')
   landingPage.classList.add('hidePage')
 }
 
 // Will hide the board, wipe the score, 
 // and show the landing page.
-const loadLandingPage = () =>{
+const loadLandingPage = () => {
   wipeSlate()
   landingPage.classList.remove('hidePage')
   boardPage.classList.add('hidePage')

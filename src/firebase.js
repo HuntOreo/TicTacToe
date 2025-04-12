@@ -1,6 +1,6 @@
 
-import {initializeApp} from 'firebase/app'
-import {getFirestore} from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
+import { getDatabase } from 'firebase/database'
 
 // config info for firebase project
 const firebaseConfig = {
@@ -16,5 +16,5 @@ const firebaseConfig = {
 // initializes the firebase app using the config info
 const app = initializeApp(firebaseConfig)
 
-// initializes the firestore and geta reference to the service
-const db = getFirestore(app)
+// initializes the firestore and get a reference to the service
+console.log(app)

@@ -21,13 +21,13 @@ export const reset = () => {
 
 // Sets score each player has when game is generated.
 export const updateScore = (player) => {
-    const tallys = document.querySelectorAll('.tally')
-    tallys.forEach(el => {
-      const text = el.previousElementSibling.innerText
-      if (text.substring(0,1) === player.name) {
-        el.innerText = player.score
-      }
-    })
+  const tallys = document.querySelectorAll('.tally')
+  tallys.forEach(el => {
+    const text = el.previousElementSibling.innerText
+    if (text.substring(0, 1) === player.name) {
+      el.innerText = player.score
+    }
+  })
 }
 
 export const reapply = () => {
@@ -41,7 +41,7 @@ export const wipeSlate = () => {
   const scores = document.querySelectorAll('.score')
 
   state.turn = 'X'
-  state.players.forEach((player)=> {
+  state.players.forEach((player) => {
     player.score = 0
     if (count < state.players.length) {
       scores[count].innerHTML = ""

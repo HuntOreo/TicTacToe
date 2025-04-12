@@ -1,6 +1,6 @@
 export let state = {
   turn: 'X',
-  players:  [
+  players: [
     { name: 'X', score: 0 },
     { name: 'O', score: 0 },
   ]
