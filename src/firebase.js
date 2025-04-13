@@ -1,8 +1,11 @@
 
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, set } from 'firebase/database'
-import { GoogleAuthProvider } from 'firebase/auth/web-extension'
-import { getAuth, signInWithRedirect } from 'firebase/auth'
+import {
+  getAuth,
+  signInWithRedirect,
+  GoogleAuthProvider
+} from 'firebase/auth'
 
 // config info for firebase project
 const firebaseConfig = {
@@ -13,16 +16,12 @@ const firebaseConfig = {
   storageBucket: "tictactoe-2d137.firebasestorage.app",
   messagingSenderId: "74233409732",
   appId: "1:74233409732:web:8aefe6c22125be0c599991",
-
 }
 
-// initializes the firebase app using the config info
-const app = initializeApp(firebaseConfig)
-const auth = getAuth()
-const provider = new GoogleAuthProvider()
-auth.languageCode = "en"
-// initializes the RT Database and get reference for the servive 
-const database = getDatabase(app)
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
 
 // First i need to create an account
 // - Need to log in and out.
@@ -37,20 +36,20 @@ googleLogin.addEventListener('click', () => {
 })
 
 
-// database stuff ignore for now
-const dumbyProfile = {
-  users: {
-    "dumby": {
-      "name": "Dumb Guy",
-      "contact": "Not Dumb Guy"
-    }
-  }
-}
+// // database stuff ignore for now
+// const dumbyProfile = {
+//   users: {
+//     "dumby": {
+//       "name": "Dumb Guy",
+//       "contact": "Not Dumb Guy"
+//     }
+//   }
+// }
 
-//LOOK UP SET command
-//LOOK UP DATA STRUCTURE PRECIDENT
-const writeUserData = (user) => {
-  set(ref(database, '/'), { ...user })
-}
+// //LOOK UP SET command
+// //LOOK UP DATA STRUCTURE PRECIDENT
+// const writeUserData = (user) => {
+//   set(ref(database, '/'), { ...user })
+// }
 
-writeUserData(dumbyProfile)
+// writeUserData(dumbyProfile)
