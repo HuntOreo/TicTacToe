@@ -1,32 +1,32 @@
 /* 
 ******* Finished ********
-Checks Rows
-Checks Columns
-Checks Diagonals
-Can check for X victory
-Can check for O victory
-Swaps teams after each play
-Can reset the board
-Keeps track of score per game
-Updates the scoreboard
-Landing page that allows you to start a game
-Special effect when winning move
+Checks Rows.
+Checks Columns.
+Checks Diagonals.
+Can check for X victory.
+Can check for O victory.
+Swaps teams after each play.
+Can reset the board.
+Keeps track of score per game.
+Updates the scoreboard.
+Landing page that allows you to start a game.
+Special effect when winning move.
 
 ******* Doing **********
 Add Authentication.
 Functional database for keeping track of users and their scores.
 
 ******* To-Do **********
-Store cookie that keeps track of a player's score
-Game UI 
-Render Player score on landing page when site is loaded
-Button to wipe score and start a new game
-Add best of 3 and 5
+Store cookie that keeps track of a player's score.
+Game UI.
+Render Player score on landing page when site is loaded.
+Button to wipe score and start a new game.
+Add best of 3 and 5.
 
 ******* Bonus *********
-Can adjust board size
-Online Multiplayer function
-3+ player functionionality
+Can adjust board size.
+Online Multiplayer function.
+3+ player functionionality.
 */
 
 import {
@@ -51,7 +51,6 @@ const landingPage = document.querySelector('.landing-page')
 const boardPage = document.querySelector('.board-page')
 const startGameBtn = document.querySelector('.startGame')
 const endGameBtn = document.querySelector('#endGame')
-
 
 // Will hide the landing page and show the board game
 const loadBoardPage = () => {

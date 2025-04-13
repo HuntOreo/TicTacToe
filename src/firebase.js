@@ -1,25 +1,43 @@
 
 import { initializeApp } from 'firebase/app'
 import { getDatabase, ref, set } from 'firebase/database'
+import { GoogleAuthProvider } from 'firebase/auth/web-extension'
+import { getAuth, signInWithRedirect } from 'firebase/auth'
 
 // config info for firebase project
 const firebaseConfig = {
   apiKey: "AIzaSyAP9lLig8GXhgMq0rGIGN6yFdmvj1I27BU",
   authDomain: "tictactoe-2d137.firebaseapp.com",
+  databaseURL: "https://tictactoe-2d137-default-rtdb.firebaseio.com",
   projectId: "tictactoe-2d137",
   storageBucket: "tictactoe-2d137.firebasestorage.app",
   messagingSenderId: "74233409732",
   appId: "1:74233409732:web:8aefe6c22125be0c599991",
-  dataBaseURL: "https://tictactoe-2d137-default-rtdb.firebaseio.com/",
 
 }
 
 // initializes the firebase app using the config info
 const app = initializeApp(firebaseConfig)
-
+const auth = getAuth()
+const provider = new GoogleAuthProvider()
+auth.languageCode = "en"
 // initializes the RT Database and get reference for the servive 
 const database = getDatabase(app)
 
+// First i need to create an account
+// - Need to log in and out.
+// - Must add the account to a database.
+// Then i need to track a user's high scores and render them.
+
+const googleLogin = document.querySelector('#login-btn')
+googleLogin.addEventListener('click', () => {
+
+  signInWithRedirect(auth, provider)
+
+})
+
+
+// database stuff ignore for now
 const dumbyProfile = {
   users: {
     "dumby": {
@@ -28,6 +46,7 @@ const dumbyProfile = {
     }
   }
 }
+
 //LOOK UP SET command
 //LOOK UP DATA STRUCTURE PRECIDENT
 const writeUserData = (user) => {
@@ -35,5 +54,3 @@ const writeUserData = (user) => {
 }
 
 writeUserData(dumbyProfile)
-
-console.log(database)
