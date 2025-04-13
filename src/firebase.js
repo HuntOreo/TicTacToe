@@ -1,6 +1,6 @@
 
 import { initializeApp } from 'firebase/app'
-import { getDatabase } from 'firebase/database'
+import { getDatabase, ref, set } from 'firebase/database'
 
 // config info for firebase project
 const firebaseConfig = {
@@ -9,12 +9,31 @@ const firebaseConfig = {
   projectId: "tictactoe-2d137",
   storageBucket: "tictactoe-2d137.firebasestorage.app",
   messagingSenderId: "74233409732",
-  appId: "1:74233409732:web:8aefe6c22125be0c599991"
+  appId: "1:74233409732:web:8aefe6c22125be0c599991",
+  dataBaseURL: "https://tictactoe-2d137-default-rtdb.firebaseio.com/",
 
 }
 
 // initializes the firebase app using the config info
 const app = initializeApp(firebaseConfig)
 
-// initializes the firestore and get a reference to the service
-console.log(app)
+// initializes the RT Database and get reference for the servive 
+const database = getDatabase(app)
+
+const dumbyProfile = {
+  users: {
+    "dumby": {
+      "name": "Dumb Guy",
+      "contact": "Not Dumb Guy"
+    }
+  }
+}
+//LOOK UP SET command
+//LOOK UP DATA STRUCTURE PRECIDENT
+const writeUserData = (user) => {
+  set(ref(database, '/'), { ...user })
+}
+
+writeUserData(dumbyProfile)
+
+console.log(database)
