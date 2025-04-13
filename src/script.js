@@ -13,6 +13,7 @@ Landing page that allows you to start a game
 Special effect when winning move
 
 ******* Doing **********
+Add Authentication.
 Functional database for keeping track of users and their scores.
 
 ******* To-Do **********
