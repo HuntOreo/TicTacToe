@@ -20,7 +20,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "firebase": "^11.6.0"
+    "firebase": "^11.6.0",
+    "firebaseui": "^6.1.0"
   },
   "devDependencies": {
     "vite": "^6.2.6"
