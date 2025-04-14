@@ -1,6 +1,13 @@
 
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, set, get, child } from 'firebase/database'
+import {
+  getDatabase,
+  ref,
+  set,
+  get,
+  child
+} from 'firebase/database'
+
 import {
   getAuth,
   signInWithPopup,
@@ -11,13 +18,13 @@ import {
 
 // config info for firebase project
 const firebaseConfig = {
-  apiKey: "AIzaSyAP9lLig8GXhgMq0rGIGN6yFdmvj1I27BU",
-  authDomain: "tictactoe-2d137.firebaseapp.com",
-  databaseURL: "https://tictactoe-2d137-default-rtdb.firebaseio.com",
-  projectId: "tictactoe-2d137",
-  storageBucket: "tictactoe-2d137.firebasestorage.app",
-  messagingSenderId: "74233409732",
-  appId: "1:74233409732:web:8aefe6c22125be0c599991",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 }
 
 // Initialize Firebase

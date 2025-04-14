@@ -1,4 +1,19 @@
 /* 
+******* Bonus *********
+Can adjust board size.
+Online Multiplayer function.
+3+ player functionionality.
+
+******* To-Do **********
+Rebuild front-end logic (its a fucking mess).
+Store cookie that keeps track of a player's score.
+Game UI.
+Start a new game.
+Add best of 3 and 5.
+
+******* Doing **********
+Render Player score on landing page when site is loaded.
+
 ******* Finished ********
 Checks Rows.
 Checks Columns.
@@ -12,22 +27,8 @@ Updates the scoreboard.
 Landing page that allows you to start a game.
 Special effect when winning move.
 Add Authentication.
-
-******* Doing **********
 Functional database for keeping track of users and their scores.
-
-******* To-Do **********
-Rebuild front-end logic (its a fucking mess).
-Store cookie that keeps track of a player's score.
-Game UI.
-Render Player score on landing page when site is loaded.
-Button to wipe score and start a new game.
-Add best of 3 and 5.
-
-******* Bonus *********
-Can adjust board size.
-Online Multiplayer function.
-3+ player functionionality.
+Button to wipe score.
 */
 
 import {
