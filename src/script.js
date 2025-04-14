@@ -11,12 +11,13 @@ Keeps track of score per game.
 Updates the scoreboard.
 Landing page that allows you to start a game.
 Special effect when winning move.
+Add Authentication.
 
 ******* Doing **********
-Add Authentication.
 Functional database for keeping track of users and their scores.
 
 ******* To-Do **********
+Rebuild front-end logic (its a fucking mess).
 Store cookie that keeps track of a player's score.
 Game UI.
 Render Player score on landing page when site is loaded.

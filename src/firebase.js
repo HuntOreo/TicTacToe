@@ -1,6 +1,6 @@
 
 import { initializeApp } from 'firebase/app'
-import { getDatabase, ref, set } from 'firebase/database'
+import { getDatabase, ref, set, get, child } from 'firebase/database'
 import {
   getAuth,
   signInWithPopup,
@@ -47,8 +47,24 @@ const googleLogin = document.querySelector('#login-btn')
 googleLogin.addEventListener('click', () => {
   signInWithPopup(auth, provider)
     .then(result => {
-      console.log(result)
-    }).catch(err => {
+      const db = getDatabase()
+      const dbRef = ref(db)
+      const user = result.user
+
+      get(child(dbRef, `users/${user.uid}`))
+        .then(snapshot => {
+          if (!snapshot.exists()) {
+            set(ref(db, `users/${user.uid}`), {
+              uid: user.uid,
+              name: user.displayName,
+              highscore: 0
+            })
+          } else {
+            console.log('i exist!')
+          }
+        })
+    })
+    .catch(err => {
       console.error(err)
     })
 })
@@ -65,23 +81,3 @@ googleLogout.addEventListener('click', () => {
       console.error(err)
     })
 })
-
-
-
-// // database stuff ignore for now
-// const dumbyProfile = {
-//   users: {
-//     "dumby": {
-//       "name": "Dumb Guy",
-//       "contact": "Not Dumb Guy"
-//     }
-//   }
-// }
-
-// //LOOK UP SET command
-// //LOOK UP DATA STRUCTURE PRECIDENT
-// const writeUserData = (user) => {
-//   set(ref(database, '/'), { ...user })
-// }
-
-// writeUserData(dumbyProfile)
