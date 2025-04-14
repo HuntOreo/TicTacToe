@@ -5,3 +5,9 @@ export let state = {
     { name: 'O', score: 0 },
   ]
 }
+
+export let currentUser = {
+  uid: null,
+  name: null,
+  highscore: null
+}

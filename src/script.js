@@ -12,7 +12,7 @@ Start a new game.
 Add best of 3 and 5.
 
 ******* Doing **********
-Render Player score on landing page when site is loaded.
+Update highscore after a game session
 
 ******* Finished ********
 Checks Rows.
@@ -29,6 +29,7 @@ Special effect when winning move.
 Add Authentication.
 Functional database for keeping track of users and their scores.
 Button to wipe score.
+Render Player score on landing page when site is loaded.
 */
 
 import {
