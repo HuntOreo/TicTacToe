@@ -1,5 +1,6 @@
+import { updateHighScore } from '../firebase.js'
 import { updateScore } from './misc.js'
-import { state } from './state.js'
+import { game_state } from './state.js'
 
 // organizes the list of tiles into a 2D array, 
 // with each child being an array of tiles that make up a row.
@@ -82,10 +83,10 @@ const check = (checkList) => {
           checkList.itemOne.forEach(tile => {
             tile.style.backgroundColor = 'red'
           })
-          state.players.find(item => item.name === checkList.turn).score++
+          game_state.players.find(item => item.name === checkList.turn).score++
           return {
             check: true,
-            player: state.turn
+            player: game_state.turn
           }
         }
       }
@@ -103,10 +104,10 @@ const check = (checkList) => {
           checkList.itemTwo.forEach(tile => {
             tile.style.backgroundColor = 'red'
           })
-          state.players.find(item => item.name === checkList.turn).score++
+          game_state.players.find(item => item.name === checkList.turn).score++
           return {
             check: true,
-            player: state.turn
+            player: game_state.turn
           }
         }
       }
@@ -128,11 +129,11 @@ const check = (checkList) => {
             checkList.itemOne[i].forEach(tile => {
               tile.style.backgroundColor = 'red'
             })
-            state.players.find(item => item.name === checkList.turn).score++
+            game_state.players.find(item => item.name === checkList.turn).score++
 
             return {
               check: true,
-              player: state.turn,
+              player: game_state.turn,
             }
           }
         }
@@ -144,41 +145,68 @@ const check = (checkList) => {
 
 }
 
-const checkWinner = (state) => {
+// will check to see if the players last play was a winning play.
+const checkWinner = (turn) => {
+  // turn === player ('X' | 'O')
 
+  // grabs the tiles that make up the board to be filtered later
   const tiles = document.querySelectorAll('.tile')
-  const rows = checkRows(tiles, state)
-  const columns = checkColumns(tiles, state)
-  const diagonals = checkDiagonal(tiles, state)
+
+  // breaks the tiles into rows, columns, and diagonals
+  // these 'filtered' sets are checked to see if any of them 
+  // qualify as a victory.
+  const rows = checkRows(tiles, turn)
+  const columns = checkColumns(tiles, turn)
+  const diagonals = checkDiagonal(tiles, turn)
 
 
+  // if blank.check returns true, this means there was a victory
+  // and the endRound function will be called.
   if (rows.check) {
-    endGame(rows)
+    endRound(rows)
   } else if (columns.check) {
     endGame(columns)
   } else if (diagonals.check) {
-    endGame(diagonals
+    endRound(diagonals
     )
   }
 }
 
-const endGame = (winner) => {
+// when the round has concluded (victory has been declared)
+// this function will remove interactability with the tiles, 
+// then update the score, and finally check if a users 
+// highscore is beaten.
+const endRound = (winner) => {
+
+  // grabs the board tiles and removes the click event listener.
   const tiles = document.querySelectorAll('.tile')
   tiles.forEach(el => {
     el.onclick = null
   })
-  const player = state.players.find(el => el.name == winner.player)
+
+  // grab the player that is considered the winner 
+  // and update their score for the game.
+  const player = game_state.players.find(el => el.name == winner.player)
+
+  // updates the player score then compares it their highscore
+  // in the database.
   updateScore(player)
+  updateHighScore()
 }
 
-export const checkValue = (element) => {
-  if (state.turn === 'X') {
+// updates the value for a clicked tile. 
+// if its X turn, the tile will be given a value of X.
+// If its O turn, the value will be set to O. 
+// Also checks to see if that move qualified a 
+// 'set' (row, column, diagonal) for a victory.
+export const updateValue = (element) => {
+  if (game_state.turn === 'X') {
     element.innerText = 'X'
-    checkWinner(state.turn)
-    state.turn = 'O'
-  } else if (state.turn === 'O') {
+    checkWinner(game_state.turn)
+    game_state.turn = 'O'
+  } else if (game_state.turn === 'O') {
     element.innerText = 'O'
-    checkWinner(state.turn)
-    state.turn = 'X'
+    checkWinner(game_state.turn)
+    game_state.turn = 'X'
   }
 }

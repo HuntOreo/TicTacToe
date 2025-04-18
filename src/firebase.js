@@ -1,5 +1,5 @@
 // user currently logged in.
-import { currentUser } from './JS/state'
+
 import { initializeApp } from 'firebase/app'
 import {
   getDatabase,
@@ -16,6 +16,11 @@ import {
   onAuthStateChanged,
   signOut
 } from 'firebase/auth'
+
+import {
+  current_user,
+  game_state
+} from './JS/state'
 
 // config info for firebase project
 const firebaseConfig = {
@@ -49,10 +54,10 @@ onAuthStateChanged(auth, (user) => {
         console.log('user signed in as', tempProfile.name)
         greetings_user.innerHTML = `Hello ${tempProfile.name}`
         highscore_user.innerHTML = `Highscore: ${tempProfile.highscore}`
-
-        currentUser.name = tempProfile.name
-        currentUser.highscore = tempProfile.highscore
-        currentUser.uid = tempProfile.uid
+        current_user.avatar = 'X'
+        current_user.name = tempProfile.name
+        current_user.highscore = tempProfile.highscore
+        current_user.uid = tempProfile.uid
       })
 
   } else {
@@ -76,6 +81,7 @@ googleLogin.addEventListener('click', () => {
       const user_data = {
         uid: user.uid,
         name: user.displayName,
+        avatar: 'X',
         highscore: 0
       }
       // search for the user in the RT database,
@@ -86,14 +92,16 @@ googleLogin.addEventListener('click', () => {
       get(child(dbRef, `users/${user.uid}`))
         .then(snapshot => {
           if (!snapshot.exists()) {
-            currentUser.name = user_data.name
-            currentUser.highscore = user_data.highscore
-            currentUser.uid = user_data.uid
+            current_user.name = user_data.name
+            current_user.highscore = user_data.highscore
+            current_user.uid = user_data.uid
+            current_user.avater = 'X'
             set(ref(db, `users/${user.uid}`), user_data)
           } else {
-            currentUser.name = user_data.name
-            currentUser.highscore = user_data.highscore
-            currentUser.uid = user_data.uid
+            current_user.name = user_data.name
+            current_user.highscore = user_data.highscore
+            current_user.uid = user_data.uid
+            current_user.avater = 'X'
             console.log('i exist!')
           }
         })
@@ -116,3 +124,49 @@ googleLogout.addEventListener('click', () => {
       console.error(err)
     })
 })
+
+
+// updates the highscore after a game session
+export const updateHighScore = () => {
+
+  const db = getDatabase()
+  const dbRef = ref(db)
+  const hsRender = document.querySelector('#highscore')
+  const userID = current_user.uid
+
+
+  // Get user data to compare scores and update later.
+  if (current_user.uid) {
+    get(child(dbRef, `users/${userID}`))
+      .then(snapshot => {
+        const user_data = { ...snapshot.val() }
+        return user_data
+      })
+      .then(data => {
+        const scoreToCheck = game_state.players.find(el => {
+          if (data.avatar === el.name) return el
+        })
+
+        if (data.highscore < scoreToCheck.score) {
+          data.highscore = scoreToCheck.score
+          current_user.highscore = data.highscore
+
+          // update that score in the database.
+          set(ref(db, `users/${current_user.uid}`), { ...current_user })
+
+          // update the score that is rendered.
+          hsRender.innerHTML = `Highscore: ${current_user.highscore}`
+        }
+
+      })
+
+  }
+
+
+
+
+  // Need to get the total highscore of the player
+
+
+
+}

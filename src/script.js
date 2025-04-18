@@ -32,11 +32,13 @@ Button to wipe score.
 Render Player score on landing page when site is loaded.
 */
 
+import { updateHighScore } from './firebase.js'
 import {
   clickedMe,
   reset,
   wipeSlate
 } from './JS/misc.js'
+import { game_state } from './JS/state.js'
 
 // applies the onClick event that will call the clickedMe function.
 const tile = document.querySelectorAll('.tile')
@@ -64,7 +66,7 @@ const loadBoardPage = () => {
 // Will hide the board, wipe the score, 
 // and show the landing page.
 const loadLandingPage = () => {
-  wipeSlate()
+  // wipeSlate()
   landingPage.classList.remove('hidePage')
   boardPage.classList.add('hidePage')
 }

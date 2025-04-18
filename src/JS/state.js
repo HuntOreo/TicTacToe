@@ -1,4 +1,4 @@
-export let state = {
+export let game_state = {
   turn: 'X',
   players: [
     { name: 'X', score: 0 },
@@ -6,8 +6,9 @@ export let state = {
   ]
 }
 
-export let currentUser = {
+export let current_user = {
   uid: null,
   name: null,
-  highscore: null
+  highscore: null,
+  avatar: 'X'
 }

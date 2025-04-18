@@ -1,10 +1,10 @@
-import { state } from './state.js'
-import { checkValue } from './checks.js'
+import { game_state } from './state.js'
+import { updateValue } from './checks.js'
 
 // creates the onClick event that each tile will use
 export const clickedMe = (el) => {
   const element = el.target
-  checkValue(element)
+  updateValue(element)
   element.onclick = null
 }
 
@@ -16,7 +16,7 @@ export const reset = () => {
     el.style.backgroundColor = '#fff'
   })
 
-  state.turn = 'X'
+  game_state.turn = 'X'
 }
 
 // Sets score each player has when game is generated.
@@ -36,14 +36,13 @@ export const reapply = () => {
 }
 
 export const wipeSlate = () => {
-
   let count = 0
   const scores = document.querySelectorAll('.score')
 
-  state.turn = 'X'
-  state.players.forEach((player) => {
+  game_state.turn = 'X'
+  game_state.players.forEach((player) => {
     player.score = 0
-    if (count < state.players.length) {
+    if (count < game_state.players.length) {
       scores[count].innerHTML = ""
       scores[count].innerHTML = `
           <div class="scoreWindow">
@@ -53,6 +52,7 @@ export const wipeSlate = () => {
         `
       count++
     }
+
   })
 
   reset()
