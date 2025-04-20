@@ -66,7 +66,7 @@ const loadBoardPage = () => {
 // Will hide the board, wipe the score, 
 // and show the landing page.
 const loadLandingPage = () => {
-  // wipeSlate()
+  wipeSlate()
   landingPage.classList.remove('hidePage')
   boardPage.classList.add('hidePage')
 }
