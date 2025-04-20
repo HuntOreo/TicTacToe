@@ -2,18 +2,30 @@
 <html>
   <head>
     <title>TicTacToe</title>
-    <script type="module" crossorigin src="/assets/index-Cm_GrxqD.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-BcG3wueo.css">
+    <script type="module" crossorigin src="/assets/index-CNaTQ6vk.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CQhuL5wM.css">
   </head>
 
   <body>
+
+    <!-- Landing/Home Page -->
     <div class="landing-page">
-      <button id="login-btn">Log In</button>
-      <p id="greetings-user"></p>
-      <p id="highscore"></p>
-      <button id="logout-btn">Log Out</button>
-      <button class="startGame">Start Game</button>
+      <div class="user-info">
+        <p id="greetings-user"></p>
+        <p id="highscore"></p>
+      </div>
+      <h1 id="logo">TicTacToe</h1>
+      <div class="menu">
+        <button class="startGame">Start Game</button>
+        <button class="settings">Settings</button>
+        <div id="authentication">
+          <button id="login-btn">Log In</button>
+          <button id="logout-btn">Log Out</button>
+        </div>
+      </div>
     </div>
+
+    <!-- Game/Board Page -->
     <main id="board" class="board-page hidePage">
       <div class="window">
         <div class="score">
@@ -47,7 +59,9 @@
         <button id="endGame">End Game</button>
       </div>
     </main>
-  </body>
+  </body>
+
+  <!-- Scripts -->
   </script>
   
 </html>
