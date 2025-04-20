@@ -6,13 +6,25 @@
   </head>
 
   <body>
+
+    <!-- Landing/Home Page -->
     <div class="landing-page">
-      <button id="login-btn">Log In</button>
-      <p id="greetings-user"></p>
-      <p id="highscore"></p>
-      <button id="logout-btn">Log Out</button>
-      <button class="startGame">Start Game</button>
+      <div class="user-info">
+        <p id="greetings-user"></p>
+        <p id="highscore"></p>
+      </div>
+      <h1 id="logo">TicTacToe</h1>
+      <div class="menu">
+        <button class="startGame">Start Game</button>
+        <button class="settings">Settings</button>
+        <div id="authentication">
+          <button id="login-btn">Log In</button>
+          <button id="logout-btn">Log Out</button>
+        </div>
+      </div>
     </div>
+
+    <!-- Game/Board Page -->
     <main id="board" class="board-page hidePage">
       <div class="window">
         <div class="score">
@@ -47,6 +59,8 @@
       </div>
     </main>
   </body>
+
+  <!-- Scripts -->
   <script src="/src/script.js" type="module"></script>
   <script src="/src/firebase.js" type="module"></script>
   </script>

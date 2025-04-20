@@ -15,7 +15,6 @@ const checkRows = function (rows, state) {
     filtered.push(temp)
   }
 
-
   // checks if there is a winning play, returns true or false.
   return check({
     itemOne: filtered,

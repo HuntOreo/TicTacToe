@@ -1,5 +1,3 @@
-// user currently logged in.
-
 import { initializeApp } from 'firebase/app'
 import {
   getDatabase,
@@ -41,9 +39,12 @@ const provider = new GoogleAuthProvider();
 const greetings_user = document.querySelector('#greetings-user')
 const highscore_user = document.querySelector('#highscore')
 
+//grab login button and sign user in with google account
+const googleLogin = document.querySelector('#login-btn')
+
 // When Auth State (login and logout) changes, 
 // look for the users data in the database (found using uid)
-// and and keep track of that data.
+// and keep track of that data.
 onAuthStateChanged(auth, (user) => {
   if (user) {
     const db = getDatabase()
@@ -65,8 +66,6 @@ onAuthStateChanged(auth, (user) => {
   }
 })
 
-//grab login button and sign user in with google account
-const googleLogin = document.querySelector('#login-btn')
 
 googleLogin.addEventListener('click', () => {
   signInWithPopup(auth, provider)
@@ -134,7 +133,6 @@ export const updateHighScore = () => {
   const hsRender = document.querySelector('#highscore')
   const userID = current_user.uid
 
-
   // Get user data to compare scores and update later.
   if (current_user.uid) {
     get(child(dbRef, `users/${userID}`))
@@ -159,14 +157,5 @@ export const updateHighScore = () => {
         }
 
       })
-
   }
-
-
-
-
-  // Need to get the total highscore of the player
-
-
-
 }
